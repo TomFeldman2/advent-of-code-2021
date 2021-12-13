@@ -1,4 +1,4 @@
-from typing import Callable, TypeVar
+from typing import Callable, TypeVar, Optional
 
 from aocd.models import Puzzle
 
@@ -6,25 +6,41 @@ ParseRes = TypeVar('ParseRes')
 Fn = Callable[[ParseRes], int]
 
 
-def main(day: int, parse_fn: Callable[[str], ParseRes], part1_fn: Fn, part2_fn: Fn, submit: bool):
-    puzzle = Puzzle(year=2021, day=day)
+class AoC:
 
-    def solution():
-        ds = parse_fn(puzzle.input_data)
-        res1 = part1_fn(ds)
-        res2 = part2_fn(ds)
+    def __init__(self, day: int, parse_fn: Callable[[str], ParseRes], part1_fn: Fn, part2_fn: Fn):
+        self.puzzle = Puzzle(year=2021, day=day)
+        self.part1_fn = part1_fn
+        self.part2_fn = part2_fn
+
+        self.data = parse_fn(self.puzzle.input_data)
+
+        self.res1, self.res2 = None, None
+
+    def solve(self, data: Optional[ParseRes] = None):
+        ds = data if data else self.data
+        res1 = self.part1_fn(ds)
+        res2 = self.part2_fn(ds)
+
+        if res1:
+            print(f"first result is {res1}")
+
+        if res2:
+            print(f"second result is {res2}")
+
+        if data is None:
+            self.res1, self.res2 = res1, res2
+
         return res1, res2
 
-    res1, res2 = solution()
-
-    print(f"first result is {res1}")
-    print(f"second result is {res2}")
-    if res2:
-        if submit:
+    def submit(self):
+        if self.res2:
             print("submitting part 2")
-            puzzle.answer_b = res2
+            self.puzzle.answer_b = self.res2
 
-    elif res1:
-        if submit:
+        elif self.res1:
             print("submitting part 1")
-            puzzle.answer_a = res1
+            self.puzzle.answer_a = self.res1
+
+        else:
+            print("nothing to submit")

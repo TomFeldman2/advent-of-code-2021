@@ -1,6 +1,7 @@
 from functools import lru_cache
 
-from utils import main
+from utils import AoC
+
 
 def parse(string: str) -> list[int]:
     return [int(x) for x in string.split(',')]
@@ -40,4 +41,5 @@ def part2(data: list[int]) -> int:
 
 
 if __name__ == '__main__':
-    main(day=6, parse_fn=parse, part1_fn=part1, part2_fn=part2, submit=False)
+    aoc = AoC(day=6, parse_fn=parse, part1_fn=part1, part2_fn=part2)
+    aoc.submit()
