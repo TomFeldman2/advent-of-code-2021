@@ -1,9 +1,6 @@
 from functools import lru_cache
 
-from aocd.models import Puzzle
-
-puzzle = Puzzle(year=2021, day=6)
-
+from utils import main
 
 def parse(string: str) -> list[int]:
     return [int(x) for x in string.split(',')]
@@ -36,32 +33,11 @@ def part1(data: list[int]) -> int:
 
     return len(data)
 
+
 def part2(data: list[int]) -> int:
     sim_res = map(lambda x: sim_by_formula(x, 256), data)
     return sum(sim_res) + len(data)
 
 
-def solution():
-    ds = parse(puzzle.input_data)
-    res1 = part1(ds)
-    res2 = part2(ds)
-    return res1, res2
-
-
-def main(submit: bool = False):
-    res1, res2 = solution()
-    print(f"first result is {res1}")
-    print(f"second result is {res2}")
-    if res2:
-        if submit:
-            print("submitting part 2")
-            puzzle.answer_b = res2
-
-    elif res1:
-        if submit:
-            print("submitting part 1")
-            puzzle.answer_a = res1
-
-
 if __name__ == '__main__':
-    print(main(submit=True))
+    main(day=6, parse_fn=parse, part1_fn=part1, part2_fn=part2, submit=False)
