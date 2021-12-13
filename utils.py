@@ -33,6 +33,7 @@ class AoC:
 
         return res1, res2
 
+
     def submit(self):
         if self.res2:
             print("submitting part 2")

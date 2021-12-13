@@ -1,5 +1,3 @@
-from math import sqrt
-
 from utils import AoC
 
 Data = list[int]
@@ -15,7 +13,6 @@ def part1(data: Data) -> int:
 
 
 def part2(data: Data) -> int:
-
     def fuel(curr_pos: int, move_pos: int) -> int:
         dist = abs(curr_pos - move_pos)
         return int(dist * (dist + 1) / 2)
