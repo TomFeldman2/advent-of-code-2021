@@ -22,11 +22,15 @@ class AoC:
         res1 = self.part1_fn(ds)
         res2 = self.part2_fn(ds)
 
-        if res1:
+        if res1 is not None:
             print(f"first result is {res1}")
 
-        if res2:
+        if res2 is not None:
             print(f"second result is {res2}")
+
+        if res1 is None and res2 is None:
+            print("not implemented yet")
+
 
         if data is None:
             self.res1, self.res2 = res1, res2
