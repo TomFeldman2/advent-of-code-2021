@@ -16,7 +16,7 @@ def part2(data: Data) -> int:
 
 
 if __name__ == '__main__':
-    aoc = AoC(day=10, parse_fn=parse, part1_fn=part1, part2_fn=part2)
+    aoc = AoC(day=11, parse_fn=parse, part1_fn=part1, part2_fn=part2)
     print(aoc.data)
     # aoc.solve(example_data)
     aoc.solve()
