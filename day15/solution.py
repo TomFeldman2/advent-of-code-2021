@@ -71,7 +71,7 @@ def part2(data: Data) -> int:
             orig_cost = data[i % num_rows][j % num_cols]
             orig_cost += (int(i // num_rows) + int(j // num_cols))
             if orig_cost > 9:
-                orig_cost %= 9
+                orig_cost -= 9
 
             heapq.heappush(open_list, ListEntry(row=i, col=j, cost=node.cost + orig_cost))
             visited_set.add((i, j))
